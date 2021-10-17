@@ -1,58 +1,64 @@
-// create the Manager card
-const generateManager = function (manager) {
-    return `
-    <div class="card col" style="width: 18rem">
-        <div class="card-body card-header">
-            <h4 class="card-title">${manager.name}</h5>
-            <h5 class="card-subtitle mb-2 text-muted">${role}</h6>
+const generateCards = teamData => {
+ 
+    const manager = teamData.manager.map(function(job) {
+        let managerHtml = `
+        <div class="card" style="width: 18rem;">
+            <h2>${job.name}</h2>
+            <h4>Manager<h4>
+            <p>ID: ${job.id}</p>
+            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
+            <p>Office Number: ${job.office}</p>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              Email: <a href="mailto:${manager.email}">${manager.email}</a>
-            </li>
-            <li class="list-group-item">Employee ID: ${manager.id}</li>
-            <li class="list-group-item">Office: ${manager.officeNumber}</li>
-        </ul>
-    </div>
-    `;
+        `
+        return managerHtml
+    });
+
+    const engineer = teamData.engineer.map(function(job) {
+        let engineerHtml = `
+        <div class="card" style="width: 18rem;">
+            <h2>${job.name}</h2>
+            <h4>Engineer<h4>
+            <p>ID: ${job.id}</p>
+            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
+            <p> Github: <a href="https://github.com/${job.github}" target="_blank">${job.github}</a></p>
+        </div>
+        `
+        return engineerHtml
+    })
+
+    const intern = teamData.intern.map(function(job) {
+        let interHtml = `
+        <div class="card" style="width: 18rem;">
+            <h2>${job.name}</h2>
+            <h4>Intern<h4>
+            <p>ID: ${job.id}</p>
+            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
+            <p> School: ${job.school}</p>
+        </div>
+        `
+        return interHtml
+    })
+    return [manager,engineer,intern]
 }
 
-// create the Intern card
-const generateIntern = function (intern) {
-    return `
-    <div class="card col" style="width: 18rem">
-        <div class="card-body card-header">
-            <h4 class="card-title">${intern.name}</h5>
-            <h5 class="card-subtitle mb-2 text-muted">${intern.role}</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              Email: <a href="mailto:${intern.email}">${intern.email}</a>
-            </li>
-            <li class="list-group-item">Employee ID: ${intern.id}</li>
-            <li class="list-group-item">School: ${intern.school}</li>
-        </ul>
-    </div>
-    `;
-}
 
-// create the Engineer card
-const generateEngineer = function (engineer) {
+
+module.exports = templateData => {
     return `
-    <div class="card col" style="width: 18rem">
-        <div class="card-body card-header">
-            <h4 class="card-title">${engineer.name}</h5>
-            <h5 class="card-subtitle mb-2 text-muted">${engineer.role}</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              Email: <a href="mailto:${engineer.email}">${engineer.email}</a>
-            </li>
-            <li class="list-group-item">Employee ID: ${engineer.id}</li>
-            <li class="list-group-item">
-              GitHub: <a href="https://github.com/${engineer.github}">${engineer.github}</a>
-            </li>
-        </ul>
-    </div>
-    `;
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <title>My Team</title>
+        </head>
+        <body>
+            <header>
+            <h1 class="text-center">My Team</h1>
+            </header>
+            ${generateCards(templateData)}
+        </body>
+        </html>    
+        `
 }
