@@ -88,7 +88,6 @@ function userPrompt() {
                     }
                 ])
                 .then(response => {
-                    console.log(response.office);
                     const Managers = new Manager (userAnswer.name, userAnswer.email, userAnswer.id, userAnswer.role, response.office)
                     myTeamArray.push(Managers);
                     addNewMembers()
@@ -109,7 +108,6 @@ function userPrompt() {
                     }
                 ])
                 .then(response => {
-                    console.log(response.gitHub);
                     const Engineers = new Engineer (userAnswer.name, userAnswer.email, userAnswer.id, userAnswer.role, response.gitHub)
                     myTeamArray.push(Engineers);
                     addNewMembers()
@@ -131,7 +129,6 @@ function userPrompt() {
                     }
                 ])
                 .then(response =>{
-                    console.log(response.school);
                     const interns = new Intern (userAnswer.name, userAnswer.email, userAnswer.id, userAnswer.role, response.school)
                     myTeamArray.push(interns);
                     addNewMembers()
@@ -155,36 +152,20 @@ function userPrompt() {
                         message:'Would you like to add another Employee?'
                     }
                 ])
-                .then(res =>{
-                    if(res.confirmAddNewMembers === true){
+                .then(response =>{
+                    if(response.confirmAddNewMembers === true){
                         userPrompt(myTeamArray);
                     }else{
                         console.log('team', myTeamArray);
                     }
                 })
             }
-        })
+    })
 }
 
 
 userPrompt();    
 
-// const writePaage = data => {
-//     fs.writeFile('./dist/index.html', data, err => {
-//         // if there is an error 
-//         if (err) {
-//             console.log(err);
-//             return;
-//         // when the profile has been created 
-//         } else {
-//             console.log("Your team profile has been successfully created! Please check out the index.html")
-//             console.log(writePaage);
-//         }
-//     })
-// }; 
-
-
-// init()
 // .then(myTeamArray => {
 //     return generateHTML(myTeamArray);
 // })
@@ -192,7 +173,7 @@ userPrompt();
 //     return writeFile(pageHTML);
 // })
 // .catch(err => {
-// console.log(err);
+//     console.log(err);
 // });   
 
 
