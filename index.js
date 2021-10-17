@@ -1,5 +1,5 @@
 // npm packages and modules
-const fs = require('fs');
+//const fs = require('fs');
 const inquirer = require('inquirer');
 
 // link to generated page
@@ -10,12 +10,13 @@ const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Employee = require('./lib/Employee');
+const writeFile = require('./src/writefile');
 
 // my team array
 const myTeamArray = [];
 
 // begin prompts for users
-function userPrompts() {
+const userPrompts = () => {
     inquirer.prompt([
         {
             type: 'input',
@@ -65,7 +66,7 @@ function userPrompts() {
         }
     ])
 
-    // create prompt for role selected as Manager
+    // create prompt for role selected as Manager, Intern or Engineer
     .then(userAnswer => {
         if (userAnswer.role === 'Manager') {
             inquirer.prompt([
@@ -128,15 +129,16 @@ function userPrompts() {
                 //console.log(response.school);
                 const interns = new Intern (userAnswer.name, userAnswer.email, userAnswer.id, userAnswer.role, response.school);
                 myTeamArray.push(interns);
+                additionalEmployee();
             })
         }else {
             const employees = new Employee (userAnswer.name, userAnswer.email, userAnswer.id, userAnswer.role);
             myTeamArray.push(employees);
-            additionalEmployee();
+            
         }
 
         // add additional employee
-        function additionalEmployee() {
+        const additionalEmployee = () => {
             inquirer.prompt([
                 {
                     type: 'confirm',
@@ -145,19 +147,56 @@ function userPrompts() {
                     default: true
                 }
             ])
-            .then(res => {
-                if (res.confirmAdditionalEmployee === true) {
+            .then(response => {
+                if (response.confirmAdditionalEmployee === true) {
                     userPrompts(myTeamArray);
                 }else {
-                    console.log(myTeamArray);
+                    console.log('team', myTeamArray);
                 }
             })
         }
 
     })
-} 
+}; 
 
-userPrompts();
+userPrompts()
+    .then(teamData => {
+        return generateHTML(myTeamArray)
+    })
+    .then(htmlPage => {
+        return writeFile(htmlPage)
+    })
+    
+
+// const writePaage = data => {
+//     fs.writeFile('./dist/index.html', data, err => {
+//         // if there is an error 
+//         if (err) {
+//             console.log(err);
+//             return;
+//         // when the profile has been created 
+//         } else {
+//             console.log("Your team profile has been successfully created! Please check out the index.html")
+//             console.log(writePaage);
+//         }
+//     })
+// }; 
+
+
+// init()
+// .then(myTeamArray => {
+//     return generateHTML(myTeamArray);
+// })
+// .then(pageHTML => {
+//     return writeFile(pageHTML);
+// })
+// .catch(err => {
+// console.log(err);
+// });   
+
+
+
+
 
 
 
