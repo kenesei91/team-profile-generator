@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar{
+    background: rgb(255,0,0);
+    color: rgb(255, 255, 255);
+}
+
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    }
+.navbar-brand {
+    float:none;
+    font-size: 48px;}
+
+
+.card{
+    margin: 18px;
+    padding: 0;
+}
+
+.card-header{
+    background-color: rgb(13, 102, 102);
+}
+
+.card-title {
+    color:white;
+    text-align: center;
+}
+
+.text-muted {
+    text-align: center;
+    color:white;
+
+}
+
+.list-group{
+    margin: 10px;
+    
+    
+}
