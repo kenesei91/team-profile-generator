@@ -32,7 +32,7 @@ const generateCards = teamData => {
             <li class="list-group-item">
               Email: <a href="mailto:${map1.email}">${map1.email}</a>
             </li>
-            <li class="list-group-item">Employee ID: 1</li>
+            <li class="list-group-item">Employee ID: ${map1.id}</li>
             <li class="list-group-item">
               GitHub: <a href="https://github.com/${map1.github}">${map1.github}</a>
             </li>
