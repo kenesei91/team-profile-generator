@@ -62,7 +62,6 @@ function userPrompt() {
           ])
           .then(({ office, addNewMember }) => {
             manager.push(new Manager(employee, email, id, office));
-            // console.log(employeeArr)
             if (addNewMember) {
               return userPrompt();
             }
@@ -84,7 +83,6 @@ function userPrompt() {
           ])
           .then(({ github, addNewMember }) => {
             engineer.push(new Engineer(employee, email, id, github));
-            // console.log(employeeArr)
             if (addNewMember) {
               return userPrompt();
             }
@@ -106,7 +104,6 @@ function userPrompt() {
           ])
           .then(({ school, addNewMember }) => {
             intern.push(new Intern(employee, email, id, school));
-            // console.log(employeeArr)
             if (addNewMember) {
               return userPrompt();
             }
