@@ -1,44 +1,66 @@
 const generateCards = teamData => {
  
-    const manager = teamData.manager.map(function(job) {
-        let managerHtml = `
-        <div class="card" style="width: 18rem;">
-            <h2>${job.name}</h2>
-            <h4>Manager<h4>
-            <p>ID: ${job.id}</p>
-            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
-            <p>Office Number: ${job.office}</p>
+    const manager = teamData.manager.map(function(map1) {
+        let generatedManagerHtml = `
+        <div class="card col" style="width: 18rem">
+          <div class="card-body card-header">
+            <h4 class="card-title">${map1.name}</h5>
+            <h5 class="card-subtitle mb-2 text-muted">Engineer</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Email: <a href="mailto:${map1.email}">${map1.email}</a>
+            </li>
+            <li class="list-group-item">Employee ID: ${map1.id}</li>
+            <li class="list-group-item">
+              Office Number: ${map1.office}
+            </li>
+          </ul>
         </div>
-        `
-        return managerHtml
+        `;
+        return generatedManagerHtml;
     });
 
-    const engineer = teamData.engineer.map(function(job) {
-        let engineerHtml = `
-        <div class="card" style="width: 18rem;">
-            <h2>${job.name}</h2>
-            <h4>Engineer<h4>
-            <p>ID: ${job.id}</p>
-            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
-            <p> Github: <a href="https://github.com/${job.github}" target="_blank">${job.github}</a></p>
+    const engineer = teamData.engineer.map(function(map1) {
+        let generatedEngineerHtml = `
+        <div class="card col" style="width: 18rem">
+          <div class="card-body card-header">
+            <h4 class="card-title">${map1.name}</h5>
+            <h5 class="card-subtitle mb-2 text-muted">Engineer</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Email: <a href="mailto:${map1.email}">${map1.email}</a>
+            </li>
+            <li class="list-group-item">Employee ID: 1</li>
+            <li class="list-group-item">
+              GitHub: <a href="https://github.com/${map1.github}">${map1.github}</a>
+            </li>
+          </ul>
         </div>
-        `
-        return engineerHtml
+        `;
+        return generatedEngineerHtml;
     })
 
-    const intern = teamData.intern.map(function(job) {
-        let interHtml = `
-        <div class="card" style="width: 18rem;">
-            <h2>${job.name}</h2>
-            <h4>Intern<h4>
-            <p>ID: ${job.id}</p>
-            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
-            <p> School: ${job.school}</p>
+    const intern = teamData.intern.map(function(map1) {
+        let generatedInternHtml = `
+        <div class="card col" style="width: 18rem">
+          <div class="card-body card-header">
+            <h4 class="card-title">${map1.name}</h5>
+            <h5 class="card-subtitle mb-2 text-muted">Intern</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Email: <a href="mailto:${map1.email}">${map1.email}</a>
+            </li>
+            <li class="list-group-item">Employee ID: ${map1.id}</li>
+            <li class="list-group-item">School: ${map1.school}</li>
+          </ul>
         </div>
-        `
-        return interHtml
+        `;
+        return generatedInternHtml;
     })
-    return [manager,engineer,intern]
+    return [manager,engineer,intern];
 }
 
 
@@ -54,10 +76,17 @@ module.exports = templateData => {
             <title>My Team</title>
         </head>
         <body>
-            <header>
-            <h1 class="text-center">My Team</h1>
-            </header>
-            ${generateCards(templateData)}
+            <nav class="navbar">
+                <div class="navbar-header">
+                    <span class="navbar-brand mb-0 h1 text-center">My Team</span>
+                </div>
+            </nav>
+    
+            <main class="container">
+                <div class="row">
+                    ${generateCards(templateData)}
+                </div>
+            </main>
         </body>
         </html>    
         `
