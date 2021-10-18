@@ -163,7 +163,6 @@ function userPrompt() {
     })
 }
 
-
 userPrompt();    
 
 // .then(myTeamArray => {
